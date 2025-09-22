@@ -5,7 +5,13 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'instrument-serif': ['Instrument Serif', 'serif'],
+        'ibm-plex-mono': ['IBM Plex Mono', 'monospace'],
+        'pixelify-sans': ['Pixelify Sans', 'sans-serif'],
+      },
+    },
   },
   plugins: [],
 }
