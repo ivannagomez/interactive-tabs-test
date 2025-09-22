@@ -163,7 +163,7 @@ const DraggableWindow: React.FC<DraggableWindowProps> = ({
         className={`flex items-center gap-3 px-3 py-2 ${
           isActive
             ? 'bg-gradient-to-b from-slate-50 to-gray-50 border-b border-gray-200'
-            : 'bg-gray-100 border-b border-gray-300'
+            : 'bg-gray-100 border-b'
         } cursor-grab select-none`}
         onMouseDown={handleMouseDown}
       >
@@ -202,7 +202,7 @@ const DraggableWindow: React.FC<DraggableWindowProps> = ({
           {/* Add Tab Button */}
           <button
             onClick={addTab}
-            className="ml-2 p-1.5 hover:bg-black/10 rounded-md transition-all window-controls"
+            className="ml-2 p-1.5 opacity-60 hover:opacity-100 hover:bg-black/10 rounded-md transition-all window-controls"
             aria-label="Add new tab"
           >
             <Plus className="w-4 h-4 text-gray-600" strokeWidth={2} />

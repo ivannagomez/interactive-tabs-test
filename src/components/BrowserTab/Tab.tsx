@@ -40,9 +40,9 @@ const TabComponent: React.FC<TabProps> = ({ tab, isActive, onClose, onClick }) =
       ref={setNodeRef}
       style={style}
       className={`
-        relative flex items-center gap-2 px-3 py-1 min-w-[140px] max-w-[240px]
+        relative flex items-center gap-2 pl-3 pr-1 py-1 min-w-[140px] max-w-[240px]
         ${isActive
-          ? 'bg-white/95 shadow-md border border-black/10'
+          ? 'bg-white/95 border border-black/10'
           : 'bg-black/5 hover:bg-black/10 border border-transparent'
         }
         ${isDragging ? 'opacity-60 z-50 shadow-lg' : ''}
@@ -61,7 +61,7 @@ const TabComponent: React.FC<TabProps> = ({ tab, isActive, onClose, onClick }) =
         ) : (
           <Globe className="w-4 h-4 text-gray-600 flex-shrink-0" />
         )}
-        <span className={`text-sm truncate font-medium ${
+        <span className={`text-xs truncate font-medium ${
           isActive ? 'text-gray-900' : 'text-gray-700'
         }`}>
           {tab.title}
@@ -72,7 +72,7 @@ const TabComponent: React.FC<TabProps> = ({ tab, isActive, onClose, onClick }) =
         className={`
           ${isActive ? 'opacity-60' : 'opacity-0'}
           group-hover:opacity-100
-          hover:bg-black/10 p-1 rounded-full
+          hover:bg-black/10 p-1 rounded-md ml-1
           transition-all duration-150
         `}
         aria-label="Close tab"

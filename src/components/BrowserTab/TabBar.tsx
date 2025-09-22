@@ -86,7 +86,7 @@ const TabBar: React.FC<TabBarProps> = ({
       </DndContext>
       <button
         onClick={onNewTab}
-        className="p-2 mx-2 hover:bg-gray-300 rounded transition-colors duration-200"
+        className="p-2 mx-2 opacity-60 group-hover:opacity-100 rounded transition-colors duration-200"
         aria-label="Add new tab"
       >
         <Plus className="w-4 h-4 text-gray-600" />
