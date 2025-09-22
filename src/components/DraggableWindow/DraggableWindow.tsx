@@ -29,6 +29,8 @@ const DraggableWindow: React.FC<DraggableWindowProps> = ({
   const windowRef = useRef<HTMLDivElement>(null);
 
   const handleMouseDown = (e: React.MouseEvent) => {
+    // Don't call stopPropagation so parent onMouseDown can also fire
+
     if (e.target instanceof Element && e.target.closest('.window-controls')) {
       return; // Don't drag if clicking on window controls
     }
@@ -40,7 +42,6 @@ const DraggableWindow: React.FC<DraggableWindowProps> = ({
         y: e.clientY - rect.top,
       });
       setIsDragging(true);
-      onFocus();
     }
   };
 
@@ -89,7 +90,14 @@ const DraggableWindow: React.FC<DraggableWindowProps> = ({
         height: `${size.height}px`,
         zIndex,
       }}
-      onMouseDown={() => onFocus()}
+      onMouseDown={(e) => {
+        // Focus window on any click within it
+        onFocus();
+      }}
+      onClick={(e) => {
+        // Also handle click events
+        onFocus();
+      }}
     >
       {/* Window Title Bar */}
       <div
@@ -111,15 +119,15 @@ const DraggableWindow: React.FC<DraggableWindowProps> = ({
         </span>
 
         <div className="flex items-center gap-1 window-controls">
-          <button className="p-1 hover:bg-white hover:bg-opacity-20 rounded transition-colors">
+          {/* <button className="p-1 hover:bg-white hover:bg-opacity-20 rounded transition-colors">
             <Minimize2 className="w-3 h-3 text-white" />
-          </button>
-          <button className="p-1 hover:bg-white hover:bg-opacity-20 rounded transition-colors">
+          </button> */}
+          {/* <button className="p-1 hover:bg-white hover:bg-opacity-20 rounded transition-colors">
             <Maximize2 className="w-3 h-3 text-white" />
-          </button>
-          <button className="p-1 hover:bg-white hover:bg-opacity-20 rounded transition-colors">
+          </button> */}
+          {/* <button className="p-1 hover:bg-white hover:bg-opacity-20 rounded transition-colors">
             <X className="w-3 h-3 text-white" />
-          </button>
+          </button> */}
         </div>
       </div>
 

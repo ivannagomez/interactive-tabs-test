@@ -52,7 +52,7 @@ const useWindows = () => {
           id: generateId(),
           title: 'Stack Overflow',
           url: 'https://stackoverflow.com',
-          favicon: 'https://stackoverflow.com/favicon.ico',
+          favicon: 'https://cdn.sstatic.net/Sites/stackoverflow/Img/favicon.ico',
         },
       ],
     },
@@ -65,9 +65,9 @@ const useWindows = () => {
       tabs: [
         {
           id: generateId(),
-          title: 'Twitter',
-          url: 'https://twitter.com',
-          favicon: 'https://twitter.com/favicon.ico',
+          title: 'X (Twitter)',
+          url: 'https://x.com',
+          favicon: 'https://x.com/favicon.ico',
         },
       ],
     },
