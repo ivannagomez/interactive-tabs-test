@@ -94,7 +94,7 @@ const DraggableWindow: React.FC<DraggableWindowProps> = ({
     if (rect) {
       setDragOffset({
         x: e.clientX - rect.left,
-        y: e.clientY - rect.top,
+        y: (e.clientY + window.scrollY) - (rect.top + window.scrollY),
       });
       setIsDragging(true);
     }
@@ -104,11 +104,11 @@ const DraggableWindow: React.FC<DraggableWindowProps> = ({
     const handleMouseMove = (e: MouseEvent) => {
       if (isDragging) {
         const newX = e.clientX - dragOffset.x;
-        const newY = e.clientY - dragOffset.y;
+        const newY = (e.clientY + window.scrollY) - dragOffset.y;
 
-        // Keep window within viewport bounds
+        // Keep window within full page bounds (200vh)
         const maxX = window.innerWidth - size.width;
-        const maxY = window.innerHeight - size.height;
+        const maxY = (window.innerHeight * 2) - size.height;
 
         onDrag({
           x: Math.max(0, Math.min(newX, maxX)),

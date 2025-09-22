@@ -7,9 +7,9 @@ const Desktop: React.FC = () => {
   const { windows, updateWindowPosition, focusWindow, activeWindowId } = useWindows();
 
   return (
-    <div className="relative w-full min-h-screen" style={{ backgroundColor: 'rgb(248, 245, 234)' }}>
+    <div className="relative w-full min-h-[200vh]" style={{ backgroundColor: 'rgb(248, 245, 234)' }}>
       {/* Header Hero Section */}
-      <header className="relative z-[3] px-8 pt-12 pb-8">
+      <header className="relative z-[3] px-8 pt-36 pb-8">
         <div className="max-w-6xl mx-auto text-center">
           <h1 className="font-bold mb-6 tracking-tight font-instrument-serif text-8xl" style={{ color: '#251075' }}>
             Interactive Browser Playground
@@ -25,8 +25,8 @@ const Desktop: React.FC = () => {
         </div>
       </header>
 
-      {/* Gradient Background System */}
-      <div className="absolute inset-0 overflow-hidden z-0">
+      {/* Gradient Background System - Fixed for Static Scroll */}
+      <div className="fixed inset-0 overflow-hidden z-0">
         <img
           src="/src/assets/gradient-1.png"
           alt=""
