@@ -19,7 +19,7 @@ const useWindows = () => {
       title: 'Windsurf Browser',
       position: { x: 100, y: 100 },
       size: { width: 800, height: 600 },
-      zIndex: 1,
+      zIndex: 5,
       tabs: [
         {
           id: generateId(),
@@ -40,7 +40,7 @@ const useWindows = () => {
       title: 'Development Browser',
       position: { x: 250, y: 150 },
       size: { width: 800, height: 600 },
-      zIndex: 2,
+      zIndex: 7,
       tabs: [
         {
           id: generateId(),
@@ -61,7 +61,7 @@ const useWindows = () => {
       title: 'Social Browser',
       position: { x: 400, y: 200 },
       size: { width: 800, height: 600 },
-      zIndex: 3,
+      zIndex: 9,
       tabs: [
         {
           id: generateId(),
