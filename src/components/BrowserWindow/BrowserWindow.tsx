@@ -37,7 +37,7 @@ const BrowserWindow: React.FC<BrowserWindowProps> = ({ initialTabs, windowId }) 
         />
 
         {/* Navigation Bar */}
-        <div className="flex items-center gap-2 px-4 py-2 bg-white border-t border-gray-200">
+        <div className="flex items-center gap-2 px-4 py-2 bg-white border-gray-200">
           <button className="p-1.5 hover:bg-gray-100 rounded transition-colors">
             <ChevronLeft className="w-4 h-4 text-gray-600" />
           </button>

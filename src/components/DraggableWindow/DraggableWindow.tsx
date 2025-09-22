@@ -80,9 +80,13 @@ const DraggableWindow: React.FC<DraggableWindowProps> = ({
   return (
     <div
       ref={windowRef}
-      className={`absolute bg-white rounded-lg shadow-2xl overflow-hidden transition-shadow ${
-        isActive ? 'shadow-2xl ring-2 ring-blue-500 ring-opacity-50' : 'shadow-xl'
-      } ${isDragging ? 'cursor-grabbing' : ''}`}
+      className={`absolute bg-white rounded-xl overflow-hidden ring-1 ring-black/10 ${
+        isDragging
+          ? 'cursor-grabbing shadow-2xl shadow-black/30 ring-2'
+          : isActive
+            ? 'shadow-2xl shadow-black/20 transition-shadow duration-300'
+            : 'shadow-lg shadow-black/10 hover:shadow-xl transition-shadow duration-300'
+      }`}
       style={{
         left: `${position.x}px`,
         top: `${position.y}px`,
@@ -102,32 +106,26 @@ const DraggableWindow: React.FC<DraggableWindowProps> = ({
       {/* Window Title Bar */}
       <div
         className={`flex items-center justify-between px-4 py-3 ${
-          isActive ? 'bg-gradient-to-r from-blue-500 to-blue-600' : 'bg-gray-700'
+          isActive
+            ? 'bg-gradient-to-r from-gray-50 to-gray-100 border-b border-black/5'
+            : 'bg-gray-100 border-b border-black/8'
         } cursor-grab select-none`}
         onMouseDown={handleMouseDown}
       >
         <div className="flex items-center gap-2">
           <div className="flex items-center gap-2 window-controls">
-            <button className="w-3 h-3 rounded-full bg-red-500 hover:bg-red-600 transition-colors" />
-            <button className="w-3 h-3 rounded-full bg-yellow-500 hover:bg-yellow-600 transition-colors" />
-            <button className="w-3 h-3 rounded-full bg-green-500 hover:bg-green-600 transition-colors" />
+            <button className="w-3 h-3 rounded-full bg-red-500 hover:bg-red-600 transition-colors shadow-sm" />
+            <button className="w-3 h-3 rounded-full bg-yellow-500 hover:bg-yellow-600 transition-colors shadow-sm" />
+            <button className="w-3 h-3 rounded-full bg-green-500 hover:bg-green-600 transition-colors shadow-sm" />
           </div>
         </div>
 
-        <span className="text-white text-sm font-medium absolute left-1/2 transform -translate-x-1/2">
+        <span className="text-black text-sm font-medium absolute left-1/2 transform -translate-x-1/2 tracking-tight">
           {title}
         </span>
 
         <div className="flex items-center gap-1 window-controls">
-          {/* <button className="p-1 hover:bg-white hover:bg-opacity-20 rounded transition-colors">
-            <Minimize2 className="w-3 h-3 text-white" />
-          </button> */}
-          {/* <button className="p-1 hover:bg-white hover:bg-opacity-20 rounded transition-colors">
-            <Maximize2 className="w-3 h-3 text-white" />
-          </button> */}
-          {/* <button className="p-1 hover:bg-white hover:bg-opacity-20 rounded transition-colors">
-            <X className="w-3 h-3 text-white" />
-          </button> */}
+          {/* Controls are hidden but kept for future use */}
         </div>
       </div>
 

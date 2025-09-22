@@ -43,7 +43,7 @@ const TabComponent: React.FC<TabProps> = ({ tab, isActive, onClose, onClick }) =
         relative flex items-center gap-2 px-3 py-2 min-w-[180px] max-w-[240px]
         ${isActive ? 'bg-white' : 'bg-gray-100 hover:bg-gray-50'}
         ${isDragging ? 'opacity-50 z-50' : ''}
-        border-r border-gray-300
+        border-r
         cursor-pointer select-none
         transition-all duration-200
         group
