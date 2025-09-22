@@ -17,9 +17,9 @@ const useWindows = () => {
     {
       id: generateId(),
       title: 'Windsurf Browser',
-      position: { x: 100, y: 100 },
+      position: { x: window.innerWidth * 0.10, y: window.innerHeight * 0.75 },
       size: { width: 800, height: 600 },
-      zIndex: 5,
+      zIndex: 7,
       tabs: [
         {
           id: generateId(),
@@ -38,9 +38,9 @@ const useWindows = () => {
     {
       id: generateId(),
       title: 'Development Browser',
-      position: { x: 250, y: 150 },
+      position: { x: window.innerWidth * 0.4, y: window.innerHeight * 0.5 },
       size: { width: 800, height: 600 },
-      zIndex: 7,
+      zIndex: 5,
       tabs: [
         {
           id: generateId(),
@@ -59,7 +59,7 @@ const useWindows = () => {
     {
       id: generateId(),
       title: 'Social Browser',
-      position: { x: 400, y: 200 },
+      position: { x: window.innerWidth * 0.35, y: window.innerHeight * 1.25 },
       size: { width: 800, height: 600 },
       zIndex: 9,
       tabs: [
