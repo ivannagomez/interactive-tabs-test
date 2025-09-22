@@ -101,7 +101,7 @@ const DraggableWindow: React.FC<DraggableWindowProps> = ({
     >
       {/* Window Title Bar */}
       <div
-        className={`flex items-center justify-between px-4 py-2 ${
+        className={`flex items-center justify-between px-4 py-3 ${
           isActive ? 'bg-gradient-to-r from-blue-500 to-blue-600' : 'bg-gray-700'
         } cursor-grab select-none`}
         onMouseDown={handleMouseDown}
