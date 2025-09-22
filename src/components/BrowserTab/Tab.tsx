@@ -40,12 +40,15 @@ const TabComponent: React.FC<TabProps> = ({ tab, isActive, onClose, onClick }) =
       ref={setNodeRef}
       style={style}
       className={`
-        relative flex items-center gap-2 px-3 py-2 min-w-[180px] max-w-[240px]
-        ${isActive ? 'bg-white' : 'bg-gray-100 hover:bg-gray-50'}
-        ${isDragging ? 'opacity-50 z-50' : ''}
-        border-r
+        relative flex items-center gap-2 px-3 py-1 min-w-[140px] max-w-[240px]
+        ${isActive
+          ? 'bg-white/95 shadow-md border border-black/10'
+          : 'bg-black/5 hover:bg-black/10 border border-transparent'
+        }
+        ${isDragging ? 'opacity-60 z-50 shadow-lg' : ''}
+        rounded-md
         cursor-pointer select-none
-        transition-all duration-200
+        transition-all duration-150 ease-out
         group
       `}
       onClick={handleClick}
@@ -54,22 +57,28 @@ const TabComponent: React.FC<TabProps> = ({ tab, isActive, onClose, onClick }) =
     >
       <div className="flex items-center gap-2 flex-1 overflow-hidden">
         {tab.favicon ? (
-          <img src={tab.favicon} alt="" className="w-4 h-4 flex-shrink-0" />
+          <img src={tab.favicon} alt="" className="w-4 h-4 flex-shrink-0 rounded-sm" />
         ) : (
-          <Globe className="w-4 h-4 text-gray-500 flex-shrink-0" />
+          <Globe className="w-4 h-4 text-gray-600 flex-shrink-0" />
         )}
-        <span className="text-sm truncate text-gray-700">{tab.title}</span>
+        <span className={`text-sm truncate font-medium ${
+          isActive ? 'text-gray-900' : 'text-gray-700'
+        }`}>
+          {tab.title}
+        </span>
       </div>
       <button
         onClick={handleClose}
-        className="opacity-0 group-hover:opacity-100 p-0.5 hover:bg-gray-200 rounded transition-opacity duration-200"
+        className={`
+          ${isActive ? 'opacity-60' : 'opacity-0'}
+          group-hover:opacity-100
+          hover:bg-black/10 p-1 rounded-full
+          transition-all duration-150
+        `}
         aria-label="Close tab"
       >
-        <X className="w-3.5 h-3.5 text-gray-600" />
+        <X className="w-3.5 h-3.5 text-gray-600" strokeWidth={2} />
       </button>
-      {isActive && (
-        <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-blue-500" />
-      )}
     </div>
   );
 };

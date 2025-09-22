@@ -1,5 +1,22 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Maximize2, Minimize2, X } from 'lucide-react';
+import { Plus } from 'lucide-react';
+import useTabs from '../../hooks/useTabs';
+import Tab from '../BrowserTab/Tab';
+import {
+  DndContext,
+  closestCenter,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+  DragEndEvent,
+} from '@dnd-kit/core';
+import {
+  SortableContext,
+  sortableKeyboardCoordinates,
+  horizontalListSortingStrategy,
+} from '@dnd-kit/sortable';
+import type { Tab as TabType } from '../../types';
 
 interface DraggableWindowProps {
   id: string;
@@ -11,6 +28,7 @@ interface DraggableWindowProps {
   onFocus: () => void;
   title: string;
   children: React.ReactNode;
+  initialTabs?: TabType[];
 }
 
 const DraggableWindow: React.FC<DraggableWindowProps> = ({
@@ -23,16 +41,53 @@ const DraggableWindow: React.FC<DraggableWindowProps> = ({
   onFocus,
   title,
   children,
+  initialTabs,
 }) => {
   const [isDragging, setIsDragging] = useState(false);
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
   const windowRef = useRef<HTMLDivElement>(null);
 
+  const {
+    tabs,
+    activeTabId,
+    activeTab,
+    addTab,
+    closeTab,
+    setActiveTab,
+    reorderTabs,
+  } = useTabs(initialTabs);
+
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        distance: 8,
+      },
+    }),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    })
+  );
+
+  const handleTabDragEnd = (event: DragEndEvent) => {
+    const { active, over } = event;
+
+    if (over && active.id !== over.id) {
+      const oldIndex = tabs.findIndex((tab) => tab.id === active.id);
+      const newIndex = tabs.findIndex((tab) => tab.id === over.id);
+
+      const newTabs = [...tabs];
+      const [movedTab] = newTabs.splice(oldIndex, 1);
+      newTabs.splice(newIndex, 0, movedTab);
+
+      reorderTabs(newTabs);
+    }
+  };
+
   const handleMouseDown = (e: React.MouseEvent) => {
     // Don't call stopPropagation so parent onMouseDown can also fire
 
-    if (e.target instanceof Element && e.target.closest('.window-controls')) {
-      return; // Don't drag if clicking on window controls
+    if (e.target instanceof Element && (e.target.closest('.window-controls') || e.target.closest('.tab-item'))) {
+      return; // Don't drag if clicking on window controls or tabs
     }
 
     const rect = windowRef.current?.getBoundingClientRect();
@@ -103,35 +158,65 @@ const DraggableWindow: React.FC<DraggableWindowProps> = ({
         onFocus();
       }}
     >
-      {/* Window Title Bar */}
+      {/* Window Title Bar with Tabs */}
       <div
-        className={`flex items-center justify-between px-4 py-3 ${
+        className={`flex items-center gap-3 px-3 py-2 ${
           isActive
-            ? 'bg-gradient-to-r from-gray-50 to-gray-100 border-b border-black/5'
-            : 'bg-gray-100 border-b border-black/8'
+            ? 'bg-gradient-to-b from-slate-50 to-gray-50 border-b border-gray-200'
+            : 'bg-gray-100 border-b border-gray-300'
         } cursor-grab select-none`}
         onMouseDown={handleMouseDown}
       >
-        <div className="flex items-center gap-2">
-          <div className="flex items-center gap-2 window-controls">
-            <button className="w-3 h-3 rounded-full bg-red-500 hover:bg-red-600 transition-colors shadow-sm" />
-            <button className="w-3 h-3 rounded-full bg-yellow-500 hover:bg-yellow-600 transition-colors shadow-sm" />
-            <button className="w-3 h-3 rounded-full bg-green-500 hover:bg-green-600 transition-colors shadow-sm" />
-          </div>
+        {/* Window Controls */}
+        <div className="flex items-center gap-2 window-controls">
+          <button className="w-3 h-3 rounded-full bg-red-500 hover:bg-red-600 transition-all hover:scale-110 shadow-sm" />
+          <button className="w-3 h-3 rounded-full bg-yellow-500 hover:bg-yellow-600 transition-all hover:scale-110 shadow-sm" />
+          <button className="w-3 h-3 rounded-full bg-green-500 hover:bg-green-600 transition-all hover:scale-110 shadow-sm" />
         </div>
 
-        <span className="text-black text-sm font-medium absolute left-1/2 transform -translate-x-1/2 tracking-tight">
-          {title}
-        </span>
+        {/* Tabs */}
+        <div className="flex-1 flex items-center overflow-x-auto scrollbar-hide">
+          <DndContext
+            sensors={sensors}
+            collisionDetection={closestCenter}
+            onDragEnd={handleTabDragEnd}
+          >
+            <SortableContext
+              items={tabs.map(tab => tab.id)}
+              strategy={horizontalListSortingStrategy}
+            >
+              <div className="flex items-center gap-1 tab-item">
+                {tabs.map((tab) => (
+                  <Tab
+                    key={tab.id}
+                    tab={tab}
+                    isActive={tab.id === activeTabId}
+                    onClose={closeTab}
+                    onClick={setActiveTab}
+                  />
+                ))}
+              </div>
+            </SortableContext>
+          </DndContext>
 
-        <div className="flex items-center gap-1 window-controls">
-          {/* Controls are hidden but kept for future use */}
+          {/* Add Tab Button */}
+          <button
+            onClick={addTab}
+            className="ml-2 p-1.5 hover:bg-black/10 rounded-md transition-all window-controls"
+            aria-label="Add new tab"
+          >
+            <Plus className="w-4 h-4 text-gray-600" strokeWidth={2} />
+          </button>
         </div>
       </div>
 
       {/* Window Content */}
       <div className="h-full overflow-hidden">
-        {children}
+        {React.cloneElement(children as React.ReactElement, {
+          tabs,
+          activeTabId,
+          activeTab,
+        })}
       </div>
     </div>
   );

@@ -37,11 +37,9 @@ const Desktop: React.FC = () => {
           onDrag={(position) => updateWindowPosition(window.id, position)}
           onFocus={() => focusWindow(window.id)}
           title={window.title}
+          initialTabs={window.tabs}
         >
-          <BrowserWindow
-            initialTabs={window.tabs}
-            windowId={window.id}
-          />
+          <BrowserWindow />
         </DraggableWindow>
       ))}
     </div>
