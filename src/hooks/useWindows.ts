@@ -23,9 +23,9 @@ const useWindows = () => {
       tabs: [
         {
           id: generateId(),
-          title: 'Welcome to Windsurf',
-          url: 'windsurf://welcome',
-          content: 'Welcome to Windsurf! This is a draggable browser window.',
+          title: 'Hello friend!',
+          url: 'http://localhost:1111',
+          content: 'Welcome to the Interactive Browser Playground! Explore this React + Tailwind case study.',
         },
         {
           id: generateId(),
@@ -47,6 +47,7 @@ const useWindows = () => {
           title: 'GitHub',
           url: 'https://github.com',
           favicon: 'https://github.com/favicon.ico',
+          content: 'image:test-3.jpg',
         },
         {
           id: generateId(),
@@ -68,6 +69,7 @@ const useWindows = () => {
           title: 'X (Twitter)',
           url: 'https://x.com',
           favicon: 'https://x.com/favicon.ico',
+          content: 'image:test-2.jpg',
         },
       ],
     },

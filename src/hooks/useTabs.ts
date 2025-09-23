@@ -34,7 +34,7 @@ const useTabs = (initialTabs?: Tab[]) => {
       id: generateId(),
       title: 'New Tab',
       url: 'about:blank',
-      content: 'This is a new tab. Navigate to any URL or add custom content here.',
+      content: 'Hello friend, I see you poking around!',
     };
     setTabs(prev => [...prev, newTab]);
     setActiveTabId(newTab.id);

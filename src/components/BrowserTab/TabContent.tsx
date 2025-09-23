@@ -1,6 +1,9 @@
 import React from 'react';
 import type { Tab } from '../../types';
-import { Globe, Github, Twitter, Code2, Search } from 'lucide-react';
+import { Globe, Github, Twitter, Code2, Search, FileText, Folder, FolderOpen, Coffee } from 'lucide-react';
+import test1 from '../../assets/test-1.jpg';
+import test2 from '../../assets/test-2.jpg';
+import test3 from '../../assets/test-3.jpg';
 
 interface TabContentProps {
   activeTab: Tab | null;
@@ -18,6 +21,191 @@ const TabContent: React.FC<TabContentProps> = ({ activeTab }) => {
   // Mock content for different sites
   const getMockContent = () => {
     const url = activeTab.url?.toLowerCase() || '';
+
+    // Check if content specifies an image
+    if (activeTab.content?.startsWith('image:')) {
+      const imageName = activeTab.content.replace('image:', '');
+      let imageSrc;
+
+      switch (imageName) {
+        case 'test-1.jpg':
+          imageSrc = test1;
+          break;
+        case 'test-2.jpg':
+          imageSrc = test2;
+          break;
+        case 'test-3.jpg':
+          imageSrc = test3;
+          break;
+        default:
+          imageSrc = null;
+      }
+
+      if (imageSrc) {
+        return (
+          <div className="flex-1 bg-white h-full overflow-auto">
+            <img
+              src={imageSrc}
+              alt={activeTab.title}
+              className="w-full h-auto object-cover"
+            />
+          </div>
+        );
+      }
+    }
+
+    if (url.includes('http://localhost:1111')) {
+      return (
+        <div className="flex h-full bg-gray-800 text-white font-inter">
+          {/* Sidebar */}
+          <div className="w-64 bg-gray-800 border-r border-gray-700 flex flex-col">
+            {/* Explorer Header */}
+            <div className="p-3 text-xs uppercase tracking-wide text-gray-400 bg-gray-800 border-b border-gray-700">
+              Explorer
+            </div>
+
+            {/* File Tree */}
+            <div className="flex-1 p-2 text-sm">
+              <div className="mb-2">
+                <div className="flex items-center gap-1 text-gray-300 mb-1">
+                  <FolderOpen className="w-4 h-4" />
+                  <span className="font-medium">interactive-browser-playground</span>
+                </div>
+                <div className="ml-5 space-y-1">
+                  <div className="flex items-center gap-1 text-gray-400">
+                    <Folder className="w-3 h-3" />
+                    <span>src/</span>
+                  </div>
+                  <div className="ml-4 space-y-1">
+                    <div className="flex items-center gap-1 text-gray-400">
+                      <Folder className="w-3 h-3" />
+                      <span>components/</span>
+                    </div>
+                    <div className="flex items-center gap-1 text-gray-400">
+                      <Folder className="w-3 h-3" />
+                      <span>hooks/</span>
+                    </div>
+                    <div className="flex items-center gap-1 text-blue-400">
+                      <FileText className="w-3 h-3" />
+                      <span>README.md</span>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-1 text-gray-400">
+                    <FileText className="w-3 h-3" />
+                    <span>package.json</span>
+                  </div>
+                  <div className="flex items-center gap-1 text-gray-400">
+                    <FileText className="w-3 h-3" />
+                    <span>tailwind.config.js</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Main Editor Area */}
+          <div className="flex-1 flex flex-col">
+            {/* Tab Bar */}
+            <div className="flex bg-gray-800 border-b border-gray-700">
+              <div className="flex items-center gap-2 px-4 py-2 bg-gray-800 border-r border-gray-700">
+                <FileText className="w-4 h-4 text-blue-400" />
+                <span className="text-sm text-gray-200">README.md</span>
+                <button className="ml-2 text-gray-500 hover:text-gray-300">×</button>
+              </div>
+            </div>
+
+            {/* Editor Content */}
+            <div className="flex-1 overflow-auto bg-gray-800 font-ibm-plex-mono text-sm leading-6">
+              <div className="flex">
+                {/* Line Numbers */}
+                <div className="bg-gray-800 px-4 py-6 text-gray-500 text-right select-none border-gray-700">
+                  {Array.from({ length: 50 }, (_, i) => (
+                    <div key={i + 1} className="leading-6">{i + 1}</div>
+                  ))}
+                </div>
+
+                {/* Code Content */}
+                <div className="flex-1 p-6">
+                  <div className="text-gray-300">
+                    {/* Markdown-style code with syntax highlighting */}
+                    <div className="space-y-1">
+                      
+                      <div><span className="text-gray-500">// A case study showcasing modern web development</span></div>
+                      <div><span className="text-gray-500">// Built with React + Tailwind CSS</span></div>
+                      <div className="text-gray-500"></div>
+
+                      <div><span className="text-purple-400">##</span> <span className="text-yellow-300">Project Overview</span></div>
+                      <div className="text-gray-500"></div>
+                      <div><span className="text-blue-300">const</span> <span className="text-white">project</span> <span className="text-red-400">=</span> <span className="text-yellow-300">{'{'}</span></div>
+                      <div>  <span className="text-cyan-300">name</span><span className="text-red-400">:</span> <span className="text-green-400">"Interactive Browser Playground"</span><span className="text-gray-500">,</span></div>
+                      <div>  <span className="text-cyan-300">purpose</span><span className="text-red-400">:</span> <span className="text-green-400">"Learning React + Tailwind"</span><span className="text-gray-500">,</span></div>
+                      <div>  <span className="text-cyan-300">features</span><span className="text-red-400">:</span> <span className="text-yellow-300">[</span></div>
+                      <div>    <span className="text-green-400">"Draggable browser windows"</span><span className="text-gray-500">,</span></div>
+                      <div>    <span className="text-green-400">"Mac Safari-inspired design"</span><span className="text-gray-500">,</span></div>
+                      <div>    <span className="text-green-400">"Custom tab reordering"</span><span className="text-gray-500">,</span></div>
+                      <div>    <span className="text-green-400">"Responsive window management"</span></div>
+                      <div>  <span className="text-yellow-300">]</span></div>
+                      <div><span className="text-yellow-300">{'}'}</span><span className="text-gray-500">;</span></div>
+                      <div className="text-gray-500"></div>
+
+                      <div><span className="text-purple-400">##</span> <span className="text-yellow-300">Tech Stack</span></div>
+                      <div className="text-gray-500"></div>
+                      <div><span className="text-blue-300">interface</span> <span className="text-yellow-300">TechStack</span> <span className="text-yellow-300">{'{'}</span></div>
+                      <div>  <span className="text-cyan-300">frontend</span><span className="text-red-400">:</span> <span className="text-yellow-300">{'{'}</span></div>
+                      <div>    <span className="text-cyan-300">framework</span><span className="text-red-400">:</span> <span className="text-green-400">"React 18 + TypeScript"</span><span className="text-gray-500">,</span></div>
+                      <div>    <span className="text-cyan-300">styling</span><span className="text-red-400">:</span> <span className="text-green-400">"Tailwind CSS v3"</span><span className="text-gray-500">,</span></div>
+                      <div>    <span className="text-cyan-300">bundler</span><span className="text-red-400">:</span> <span className="text-green-400">"Vite"</span></div>
+                      <div>  <span className="text-yellow-300">{'}'}</span><span className="text-gray-500">,</span></div>
+                      <div>  <span className="text-cyan-300">libraries</span><span className="text-red-400">:</span> <span className="text-yellow-300">[</span></div>
+                      <div>    <span className="text-green-400">"@dnd-kit"</span><span className="text-gray-500">, // Drag & drop functionality</span></div>
+                      <div>    <span className="text-green-400">"lucide-react"</span><span className="text-gray-500">, // Beautiful icons</span></div>
+                      <div>    <span className="text-green-400">"Google Fonts"</span> <span className="text-gray-500">// Typography</span></div>
+                      <div>  <span className="text-yellow-300">]</span></div>
+                      <div><span className="text-yellow-300">{'}'}</span></div>
+                      <div className="text-gray-500"></div>
+
+                      <div><span className="text-purple-400">##</span> <span className="text-yellow-300">Key Implementations</span></div>
+                      <div className="text-gray-500"></div>
+                      <div><span className="text-gray-500">// Custom window management system</span></div>
+                      <div><span className="text-blue-300">const</span> <span className="text-white">windowFeatures</span> <span className="text-red-400">=</span> <span className="text-yellow-300">{'{'}</span></div>
+                      <div>  <span className="text-cyan-300">dragging</span><span className="text-red-400">:</span> <span className="text-green-400">"Scroll-aware calculations"</span><span className="text-gray-500">,</span></div>
+                      <div>  <span className="text-cyan-300">positioning</span><span className="text-red-400">:</span> <span className="text-green-400">"Percentage-based responsive"</span><span className="text-gray-500">,</span></div>
+                      <div>  <span className="text-cyan-300">canvas</span><span className="text-red-400">:</span> <span className="text-green-400">"200vh scrollable height"</span><span className="text-gray-500">,</span></div>
+                      <div>  <span className="text-cyan-300">background</span><span className="text-red-400">:</span> <span className="text-green-400">"Fixed gradient system"</span></div>
+                      <div><span className="text-yellow-300">{'}'}</span><span className="text-gray-500">;</span></div>
+                      <div className="text-gray-500"></div>
+
+                      <div><span className="text-gray-500">// Tab system with drag & drop</span></div>
+                      <div><span className="text-blue-300">const</span> <span className="text-white">tabSystem</span> <span className="text-red-400">=</span> <span className="text-yellow-300">{'{'}</span></div>
+                      <div>  <span className="text-cyan-300">reordering</span><span className="text-red-400">:</span> <span className="text-green-400">"Sortable context with @dnd-kit"</span><span className="text-gray-500">,</span></div>
+                      <div>  <span className="text-cyan-300">state</span><span className="text-red-400">:</span> <span className="text-green-400">"Independent per window"</span><span className="text-gray-500">,</span></div>
+                      <div>  <span className="text-cyan-300">design</span><span className="text-red-400">:</span> <span className="text-green-400">"Custom built, no imports"</span></div>
+                      <div><span className="text-yellow-300">{'}'}</span><span className="text-gray-500">;</span></div>
+                      <div className="text-gray-500"></div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Status Bar */}
+            <div className="flex items-center justify-between px-4 py-1 bg-purple-600 text-xs text-white">
+              <div className="flex items-center gap-4">
+                <span>✓ React + Tailwind</span>
+                <span>⚡ Vite</span>
+                <span>🎨 Custom Design</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span>Lines: 1000+</span>
+                <span>|</span>
+                <span>TypeScript</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
 
     if (url.includes('github')) {
       return (
