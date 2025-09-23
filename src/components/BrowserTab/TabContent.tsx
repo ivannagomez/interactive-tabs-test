@@ -129,58 +129,58 @@ const TabContent: React.FC<TabContentProps> = ({ activeTab }) => {
                   <div className="text-gray-300">
                     {/* Markdown-style code with syntax highlighting */}
                     <div className="space-y-1">
-                      
-                      <div><span className="text-gray-500">// A case study showcasing modern web development</span></div>
-                      <div><span className="text-gray-500">// Built with React + Tailwind CSS</span></div>
+
+                      <div><span className="text-gray-400">// A case study showcasing modern web development</span></div>
+                      <div><span className="text-gray-400">// Built with React + Tailwind CSS</span></div>
                       <div className="text-gray-500"></div>
 
-                      <div><span className="text-purple-400">##</span> <span className="text-yellow-300">Project Overview</span></div>
+                      <div><span className="text-violet-300">##</span> <span className="text-sky-300 font-semibold">Project Overview</span></div>
                       <div className="text-gray-500"></div>
-                      <div><span className="text-blue-300">const</span> <span className="text-white">project</span> <span className="text-red-400">=</span> <span className="text-yellow-300">{'{'}</span></div>
-                      <div>  <span className="text-cyan-300">name</span><span className="text-red-400">:</span> <span className="text-green-400">"Interactive Browser Playground"</span><span className="text-gray-500">,</span></div>
-                      <div>  <span className="text-cyan-300">purpose</span><span className="text-red-400">:</span> <span className="text-green-400">"Learning React + Tailwind"</span><span className="text-gray-500">,</span></div>
-                      <div>  <span className="text-cyan-300">features</span><span className="text-red-400">:</span> <span className="text-yellow-300">[</span></div>
-                      <div>    <span className="text-green-400">"Draggable browser windows"</span><span className="text-gray-500">,</span></div>
-                      <div>    <span className="text-green-400">"Mac Safari-inspired design"</span><span className="text-gray-500">,</span></div>
-                      <div>    <span className="text-green-400">"Custom tab reordering"</span><span className="text-gray-500">,</span></div>
-                      <div>    <span className="text-green-400">"Responsive window management"</span></div>
-                      <div>  <span className="text-yellow-300">]</span></div>
-                      <div><span className="text-yellow-300">{'}'}</span><span className="text-gray-500">;</span></div>
-                      <div className="text-gray-500"></div>
-
-                      <div><span className="text-purple-400">##</span> <span className="text-yellow-300">Tech Stack</span></div>
-                      <div className="text-gray-500"></div>
-                      <div><span className="text-blue-300">interface</span> <span className="text-yellow-300">TechStack</span> <span className="text-yellow-300">{'{'}</span></div>
-                      <div>  <span className="text-cyan-300">frontend</span><span className="text-red-400">:</span> <span className="text-yellow-300">{'{'}</span></div>
-                      <div>    <span className="text-cyan-300">framework</span><span className="text-red-400">:</span> <span className="text-green-400">"React 18 + TypeScript"</span><span className="text-gray-500">,</span></div>
-                      <div>    <span className="text-cyan-300">styling</span><span className="text-red-400">:</span> <span className="text-green-400">"Tailwind CSS v3"</span><span className="text-gray-500">,</span></div>
-                      <div>    <span className="text-cyan-300">bundler</span><span className="text-red-400">:</span> <span className="text-green-400">"Vite"</span></div>
-                      <div>  <span className="text-yellow-300">{'}'}</span><span className="text-gray-500">,</span></div>
-                      <div>  <span className="text-cyan-300">libraries</span><span className="text-red-400">:</span> <span className="text-yellow-300">[</span></div>
-                      <div>    <span className="text-green-400">"@dnd-kit"</span><span className="text-gray-500">, // Drag & drop functionality</span></div>
-                      <div>    <span className="text-green-400">"lucide-react"</span><span className="text-gray-500">, // Beautiful icons</span></div>
-                      <div>    <span className="text-green-400">"Google Fonts"</span> <span className="text-gray-500">// Typography</span></div>
-                      <div>  <span className="text-yellow-300">]</span></div>
-                      <div><span className="text-yellow-300">{'}'}</span></div>
+                      <div><span className="text-pink-300">const</span> <span className="text-gray-200">project</span> <span className="text-rose-300">=</span> <span className="text-purple-300">{'{'}</span></div>
+                      <div>  <span className="text-emerald-300">name</span><span className="text-rose-300">:</span> <span className="text-sky-300">"Interactive Browser Playground"</span><span className="text-gray-400">,</span></div>
+                      <div>  <span className="text-emerald-300">purpose</span><span className="text-rose-300">:</span> <span className="text-sky-300">"Learning React + Tailwind"</span><span className="text-gray-400">,</span></div>
+                      <div>  <span className="text-emerald-300">features</span><span className="text-rose-300">:</span> <span className="text-purple-300">[</span></div>
+                      <div>    <span className="text-sky-300">"Draggable browser windows"</span><span className="text-gray-400">,</span></div>
+                      <div>    <span className="text-sky-300">"Mac Safari-inspired design"</span><span className="text-gray-400">,</span></div>
+                      <div>    <span className="text-sky-300">"Custom tab reordering"</span><span className="text-gray-400">,</span></div>
+                      <div>    <span className="text-sky-300">"Responsive window management"</span></div>
+                      <div>  <span className="text-purple-300">]</span></div>
+                      <div><span className="text-purple-300">{'}'}</span><span className="text-gray-400">;</span></div>
                       <div className="text-gray-500"></div>
 
-                      <div><span className="text-purple-400">##</span> <span className="text-yellow-300">Key Implementations</span></div>
+                      <div><span className="text-violet-300">##</span> <span className="text-sky-300 font-semibold">Tech Stack</span></div>
                       <div className="text-gray-500"></div>
-                      <div><span className="text-gray-500">// Custom window management system</span></div>
-                      <div><span className="text-blue-300">const</span> <span className="text-white">windowFeatures</span> <span className="text-red-400">=</span> <span className="text-yellow-300">{'{'}</span></div>
-                      <div>  <span className="text-cyan-300">dragging</span><span className="text-red-400">:</span> <span className="text-green-400">"Scroll-aware calculations"</span><span className="text-gray-500">,</span></div>
-                      <div>  <span className="text-cyan-300">positioning</span><span className="text-red-400">:</span> <span className="text-green-400">"Percentage-based responsive"</span><span className="text-gray-500">,</span></div>
-                      <div>  <span className="text-cyan-300">canvas</span><span className="text-red-400">:</span> <span className="text-green-400">"200vh scrollable height"</span><span className="text-gray-500">,</span></div>
-                      <div>  <span className="text-cyan-300">background</span><span className="text-red-400">:</span> <span className="text-green-400">"Fixed gradient system"</span></div>
-                      <div><span className="text-yellow-300">{'}'}</span><span className="text-gray-500">;</span></div>
+                      <div><span className="text-pink-300">interface</span> <span className="text-purple-300">TechStack</span> <span className="text-purple-300">{'{'}</span></div>
+                      <div>  <span className="text-emerald-300">frontend</span><span className="text-rose-300">:</span> <span className="text-purple-300">{'{'}</span></div>
+                      <div>    <span className="text-emerald-300">framework</span><span className="text-rose-300">:</span> <span className="text-sky-300">"React 18 + TypeScript"</span><span className="text-gray-400">,</span></div>
+                      <div>    <span className="text-emerald-300">styling</span><span className="text-rose-300">:</span> <span className="text-sky-300">"Tailwind CSS v3"</span><span className="text-gray-400">,</span></div>
+                      <div>    <span className="text-emerald-300">bundler</span><span className="text-rose-300">:</span> <span className="text-sky-300">"Vite"</span></div>
+                      <div>  <span className="text-purple-300">{'}'}</span><span className="text-gray-400">,</span></div>
+                      <div>  <span className="text-emerald-300">libraries</span><span className="text-rose-300">:</span> <span className="text-purple-300">[</span></div>
+                      <div>    <span className="text-sky-300">"@dnd-kit"</span><span className="text-gray-400">, // Drag & drop functionality</span></div>
+                      <div>    <span className="text-sky-300">"lucide-react"</span><span className="text-gray-400">, // Beautiful icons</span></div>
+                      <div>    <span className="text-sky-300">"Google Fonts"</span> <span className="text-gray-400">// Typography</span></div>
+                      <div>  <span className="text-purple-300">]</span></div>
+                      <div><span className="text-purple-300">{'}'}</span></div>
                       <div className="text-gray-500"></div>
 
-                      <div><span className="text-gray-500">// Tab system with drag & drop</span></div>
-                      <div><span className="text-blue-300">const</span> <span className="text-white">tabSystem</span> <span className="text-red-400">=</span> <span className="text-yellow-300">{'{'}</span></div>
-                      <div>  <span className="text-cyan-300">reordering</span><span className="text-red-400">:</span> <span className="text-green-400">"Sortable context with @dnd-kit"</span><span className="text-gray-500">,</span></div>
-                      <div>  <span className="text-cyan-300">state</span><span className="text-red-400">:</span> <span className="text-green-400">"Independent per window"</span><span className="text-gray-500">,</span></div>
-                      <div>  <span className="text-cyan-300">design</span><span className="text-red-400">:</span> <span className="text-green-400">"Custom built, no imports"</span></div>
-                      <div><span className="text-yellow-300">{'}'}</span><span className="text-gray-500">;</span></div>
+                      <div><span className="text-violet-300">##</span> <span className="text-sky-300 font-semibold">Key Implementations</span></div>
+                      <div className="text-gray-500"></div>
+                      <div><span className="text-gray-400">// Custom window management system</span></div>
+                      <div><span className="text-pink-300">const</span> <span className="text-gray-200">windowFeatures</span> <span className="text-rose-300">=</span> <span className="text-purple-300">{'{'}</span></div>
+                      <div>  <span className="text-emerald-300">dragging</span><span className="text-rose-300">:</span> <span className="text-sky-300">"Scroll-aware calculations"</span><span className="text-gray-400">,</span></div>
+                      <div>  <span className="text-emerald-300">positioning</span><span className="text-rose-300">:</span> <span className="text-sky-300">"Percentage-based responsive"</span><span className="text-gray-400">,</span></div>
+                      <div>  <span className="text-emerald-300">canvas</span><span className="text-rose-300">:</span> <span className="text-sky-300">"200vh scrollable height"</span><span className="text-gray-400">,</span></div>
+                      <div>  <span className="text-emerald-300">background</span><span className="text-rose-300">:</span> <span className="text-sky-300">"Fixed gradient system"</span></div>
+                      <div><span className="text-purple-300">{'}'}</span><span className="text-gray-400">;</span></div>
+                      <div className="text-gray-500"></div>
+
+                      <div><span className="text-gray-400">// Tab system with drag & drop</span></div>
+                      <div><span className="text-pink-300">const</span> <span className="text-gray-200">tabSystem</span> <span className="text-rose-300">=</span> <span className="text-purple-300">{'{'}</span></div>
+                      <div>  <span className="text-emerald-300">reordering</span><span className="text-rose-300">:</span> <span className="text-sky-300">"Sortable context with @dnd-kit"</span><span className="text-gray-400">,</span></div>
+                      <div>  <span className="text-emerald-300">state</span><span className="text-rose-300">:</span> <span className="text-sky-300">"Independent per window"</span><span className="text-gray-400">,</span></div>
+                      <div>  <span className="text-emerald-300">design</span><span className="text-rose-300">:</span> <span className="text-sky-300">"Custom built, no imports"</span></div>
+                      <div><span className="text-purple-300">{'}'}</span><span className="text-gray-400">;</span></div>
                       <div className="text-gray-500"></div>
 
                     </div>
