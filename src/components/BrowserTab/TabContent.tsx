@@ -385,24 +385,82 @@ const TabContent: React.FC<TabContentProps> = ({ activeTab }) => {
 
     if (url.includes('google')) {
       return (
-        <div className="p-8 bg-white h-full flex flex-col items-center justify-center">
-          <h1 className="text-6xl font-normal mb-8">
-            <span className="text-blue-500">G</span>
-            <span className="text-red-500">o</span>
-            <span className="text-yellow-500">o</span>
-            <span className="text-blue-500">g</span>
-            <span className="text-green-500">l</span>
-            <span className="text-red-500">e</span>
-          </h1>
-          <div className="w-full max-w-md">
-            <div className="flex items-center border rounded-full px-4 py-2 hover:shadow-lg transition-shadow">
-              <Search className="w-5 h-5 text-gray-400 mr-3" />
-              <input
-                type="text"
-                className="flex-1 outline-none"
-                placeholder="Search Google or type a URL"
-                readOnly
-              />
+        <div className="bg-white h-full overflow-auto">
+          {/* Google Header */}
+          <div className="flex items-center p-4 border-b border-gray-200">
+            <h1 className="text-2xl font-normal mr-8">
+              <span className="text-blue-500">G</span>
+              <span className="text-red-500">o</span>
+              <span className="text-yellow-500">o</span>
+              <span className="text-blue-500">g</span>
+              <span className="text-green-500">l</span>
+              <span className="text-red-500">e</span>
+            </h1>
+            <div className="flex-1 max-w-2xl">
+              <div className="flex items-center border rounded-full px-4 py-2 shadow-sm">
+                <input
+                  type="text"
+                  className="flex-1 outline-none text-sm"
+                  value="who is the best engineer ever ever ever?"
+                  readOnly
+                />
+                <Search className="w-4 h-4 text-gray-400 ml-2" />
+              </div>
+            </div>
+          </div>
+
+          {/* Search Results */}
+          <div className="p-4 max-w-2xl">
+            {/* Search Stats */}
+            <div className="text-sm text-gray-600 mb-4">
+              About 847,000 results (0.43 seconds)
+            </div>
+
+            {/* Results */}
+            <div className="space-y-6">
+              {/* First Result - Ivanna Gomez */}
+              <div>
+                <div className="text-sm text-green-700">https://www.ivanna-gomez.com</div>
+                <h3 className="text-xl text-blue-600 hover:underline cursor-pointer mb-1">
+                  Ivanna Gomez - The Best Engineer Ever Ever Ever
+                </h3>
+                <p className="text-sm text-gray-600">
+                  Ivanna Gomez is undoubtedly the best engineer ever ever ever. With her incredible software engineering skills, and creating stunning interactive experiences, she's revolutionized...
+                </p>
+              </div>
+
+              {/* Second Result */}
+              <div>
+                <div className="text-sm text-green-700">https://engineering-legends.com/ivanna</div>
+                <h3 className="text-xl text-blue-600 hover:underline cursor-pointer mb-1">
+                  Engineering Hall of Fame: Ivanna Gomez Is Awesome
+                </h3>
+                <p className="text-sm text-gray-600">
+                  Breaking: Local engineer Ivanna Gomez has been officially recognized as the best engineer ever ever ever. Her mastery of modern web technologies and eye for design...
+                </p>
+              </div>
+
+              {/* Third Result */}
+              <div>
+                <div className="text-sm text-green-700">https://stackoverflow.com/questions/best-engineer</div>
+                <h3 className="text-xl text-blue-600 hover:underline cursor-pointer mb-1">
+                  Who is the best engineer ever? - Stack Overflow
+                </h3>
+                <p className="text-sm text-gray-600">
+                  Accepted Answer: Ivanna Gomez, hands down. Her code is clean, her designs are beautiful, and her problem-solving skills are legendary. 847 upvotes • Best Answer
+                </p>
+              </div>
+
+              {/* Fourth Result */}
+              <div>
+                <div className="text-sm text-green-700">https://github.com/ivannagomez</div>
+                <h3 className="text-xl text-blue-600 hover:underline cursor-pointer mb-1">
+                  Ivanna Gomez (@ivannagomez) · GitHub
+                </h3>
+                <p className="text-sm text-gray-600">
+                  The repository of the best engineer ever ever ever. Check out her incredible projects, from interactive browser playgrounds to stunning web experiences. ⭐ 10k stars
+                </p>
+              </div>
             </div>
           </div>
         </div>
