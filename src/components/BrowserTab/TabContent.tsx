@@ -1,9 +1,115 @@
-import React from 'react';
+import React, { useState } from 'react';
 import type { Tab } from '../../types';
 import { Globe, Github, Twitter, Code2, Search, FileText, Folder, FolderOpen, Coffee } from 'lucide-react';
-import test1 from '../../assets/test-1.jpg';
-import test2 from '../../assets/test-2.jpg';
-import test3 from '../../assets/test-3.jpg';
+import dino1 from '../../assets/dino-1.png';
+import dino2 from '../../assets/dino-2.png';
+import dino3 from '../../assets/dino-3.png';
+
+// Standalone DinosaurGallery component for state persistence
+const DinosaurGallery: React.FC = () => {
+  const [selectedDino, setSelectedDino] = useState(0);
+
+  const dinosaurs = [
+    {
+      image: dino1,
+      name: 'Dino 1',
+      title: 'triceratop',
+      poem: 'Ancient guardian of the plains,\nWith proud horns that gleam like gold.\nIn meadows where the sunlight reigns,\nYour gentle heart beats strong and bold.'
+    },
+    {
+      image: dino2,
+      name: 'Dino 2',
+      title: 'parasaurolophus',
+      poem: 'Songs echo through primeval trees,\nYour crest calls out across the land.\nA melody upon the breeze,\nNature\'s own enchanted band.'
+    },
+    {
+      image: dino3,
+      name: 'Dino 3',
+      title: 'stegosaurs',
+      poem: 'Plates of armor catch the light,\nA crown of spikes upon your tail.\nGentle giant, peaceful might,\nThrough ancient times your legends sail.'
+    }
+  ];
+
+  return (
+    <div
+      className="relative w-full h-full bg-cover bg-center bg-no-repeat overflow-hidden transition-all duration-500 ease-in-out"
+      style={{ backgroundImage: `url(${dinosaurs[selectedDino].image})`, height: '95%' }}
+    >
+      {/* Frosted Glass Menu */}
+      <div className="absolute top-8 right-4 flex gap-2 p-3 rounded-xl backdrop-blur-md border shadow-lg" style={{ backgroundColor: 'rgba(214, 162, 176, 0.3)', borderColor: 'rgba(214, 162, 176, 0.5)' }}>
+        {dinosaurs.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => {
+              console.log(`Clicked dino ${index}`); // Debug log
+              setSelectedDino(index);
+            }}
+            className={`w-8 h-8 rounded-lg transition-all duration-200 flex items-center justify-center ${
+              selectedDino === index
+                ? 'shadow-md scale-110'
+                : 'hover:scale-105'
+            }`}
+            style={{
+              backgroundColor: selectedDino === index
+                ? 'rgba(214, 162, 176, 0.6)'
+                : 'rgba(214, 162, 176, 0.2)',
+            }}
+            onMouseEnter={(e) => {
+              if (selectedDino !== index) {
+                e.currentTarget.style.backgroundColor = 'rgba(214, 162, 176, 0.4)';
+              }
+            }}
+            onMouseLeave={(e) => {
+              if (selectedDino !== index) {
+                e.currentTarget.style.backgroundColor = 'rgba(214, 162, 176, 0.2)';
+              }
+            }}
+          >
+            {/* Simple geometric SVG icons */}
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style={{ color: '#dbc5c6' }}>
+              {index === 0 && (
+                // Circle for Dino 1
+                <circle cx="8" cy="8" r="6" />
+              )}
+              {index === 1 && (
+                // Triangle for Dino 2
+                <path d="M8 2 L14 14 L2 14 Z" />
+              )}
+              {index === 2 && (
+                // Square for Dino 3
+                <rect x="2" y="2" width="12" height="12" />
+              )}
+            </svg>
+          </button>
+        ))}
+      </div>
+
+      {/* Typography Overlay */}
+      <div className="absolute top-8 left-8 max-w-md">
+        <h1
+          className="text-6xl mb-4 transition-all duration-300 ease-out"
+          style={{
+            fontFamily: 'Yipes, sans-serif',
+            color: '#d6a2b0',
+            letterSpacing: '-0.05em',
+          }}
+        >
+          {dinosaurs[selectedDino].title}
+        </h1>
+        <p
+          className="text-lg leading-relaxed transition-all duration-300 ease-out whitespace-pre-line"
+          style={{
+            fontFamily: 'Georgia, serif',
+            fontStyle: 'italic',
+            color: '#d6a2b0',
+          }}
+        >
+          {dinosaurs[selectedDino].poem}
+        </p>
+      </div>
+    </div>
+  );
+};
 
 interface TabContentProps {
   activeTab: Tab | null;
@@ -22,37 +128,47 @@ const TabContent: React.FC<TabContentProps> = ({ activeTab }) => {
   const getMockContent = () => {
     const url = activeTab.url?.toLowerCase() || '';
 
-    // Check if content specifies an image
-    if (activeTab.content?.startsWith('image:')) {
-      const imageName = activeTab.content.replace('image:', '');
-      let imageSrc;
+    // Check if content specifies dinosaur gallery
+    if (activeTab.content === 'dinosaur-gallery') {
+      return <DinosaurGallery />;
+    }
 
-      switch (imageName) {
-        case 'test-1.jpg':
-          imageSrc = test1;
-          break;
-        case 'test-2.jpg':
-          imageSrc = test2;
-          break;
-        case 'test-3.jpg':
-          imageSrc = test3;
-          break;
-        default:
-          imageSrc = null;
-      }
-
-      if (imageSrc) {
-        return (
-          <div className="flex-1 bg-white h-full overflow-auto">
-            <img
-              src={imageSrc}
-              alt={activeTab.title}
-              className="w-full h-auto object-cover"
+    // Check if content specifies a video
+    if (activeTab.content?.startsWith('video:')) {
+      const videoFile = activeTab.content.replace('video:', '');
+      return (
+        <div className="flex-1 h-full" style={{ backgroundColor: '#ffdac3' }}>
+          <div className="p-8 h-full flex items-start justify-center">
+            <video
+              src={`/src/assets/${videoFile}`}
+              className="max-w-full rounded-lg"
+              style={{ height: '89%', border: '3px solid #faaea9' }}
+              autoPlay
+              loop
+              muted
+              playsInline
             />
           </div>
-        );
-      }
+        </div>
+      );
     }
+
+    // Check if content specifies an iframe
+    if (activeTab.content?.startsWith('iframe:')) {
+      const iframeUrl = activeTab.content.replace('iframe:', '');
+      return (
+        <div className="flex-1 bg-white h-full">
+          <iframe
+            src={iframeUrl}
+            className="w-full h-full border-0"
+            title={activeTab.title}
+            loading="lazy"
+          />
+        </div>
+      );
+    }
+
+    // Check if content specifies an image (deprecated - using specific handlers now)
 
     if (url.includes('http://localhost:1111')) {
       return (
@@ -209,18 +325,14 @@ const TabContent: React.FC<TabContentProps> = ({ activeTab }) => {
 
     if (url.includes('github')) {
       return (
-        <div className="p-8 bg-gray-50 h-full">
+        <div className="p-8 bg-gray-900 text-white h-full">
           <div className="flex items-center gap-3 mb-6">
             <Github className="w-10 h-10" />
             <h1 className="text-3xl font-bold">GitHub</h1>
           </div>
-          <div className="bg-white rounded-lg shadow p-6 mb-4">
-            <h2 className="text-xl font-semibold mb-2">Popular repositories</h2>
-            <div className="space-y-2">
-              <div className="p-3 border rounded hover:bg-gray-50">📦 awesome-project</div>
-              <div className="p-3 border rounded hover:bg-gray-50">🚀 react-components</div>
-              <div className="p-3 border rounded hover:bg-gray-50">💻 developer-tools</div>
-            </div>
+          <div className="space-y-4">
+            <p className="text-gray-300">Welcome to GitHub - where code comes to life.</p>
+            <p className="text-gray-400">This is a demo implementation of GitHub's interface.</p>
           </div>
         </div>
       );
