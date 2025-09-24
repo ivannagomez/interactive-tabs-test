@@ -66,10 +66,10 @@ const useWindows = () => {
       tabs: [
         {
           id: generateId(),
-          title: 'X (Twitter)',
-          url: 'https://x.com',
-          favicon: 'https://x.com/favicon.ico',
-          content: 'image:test-2.jpg',
+          title: 'Transition Study',
+          url: 'https://www.ivanna-gomez.com/transition-study',
+          favicon: '❤️',
+          content: 'iframe:https://www.ivanna-gomez.com/transition-study',
         },
       ],
     },

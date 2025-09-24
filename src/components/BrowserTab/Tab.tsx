@@ -57,7 +57,12 @@ const TabComponent: React.FC<TabProps> = ({ tab, isActive, onClose, onClick }) =
     >
       <div className="flex items-center gap-2 flex-1 overflow-hidden">
         {tab.favicon ? (
-          <img src={tab.favicon} alt="" className="w-4 h-4 flex-shrink-0 rounded-sm" />
+          // Check if favicon is an emoji (single character, not a URL)
+          tab.favicon.length === 1 || (tab.favicon.length === 2 && /\p{Emoji}/u.test(tab.favicon)) ? (
+            <span className="w-4 h-4 flex-shrink-0 text-xs flex items-center justify-center">{tab.favicon}</span>
+          ) : (
+            <img src={tab.favicon} alt="" className="w-4 h-4 flex-shrink-0 rounded-sm" />
+          )
         ) : (
           <Globe className="w-4 h-4 text-gray-600 flex-shrink-0" />
         )}
