@@ -2,6 +2,8 @@ import React from 'react';
 import DraggableWindow from '../DraggableWindow/DraggableWindow';
 import BrowserWindow from '../BrowserWindow/BrowserWindow';
 import useWindows from '../../hooks/useWindows';
+import gradient1 from '../../assets/gradient-1.png';
+import gradient2 from '../../assets/gradient-2.png';
 
 const Desktop: React.FC = () => {
   const { windows, updateWindowPosition, focusWindow, activeWindowId } = useWindows();
@@ -28,7 +30,7 @@ const Desktop: React.FC = () => {
       {/* Gradient Background System - Fixed for Static Scroll */}
       <div className="fixed inset-0 overflow-hidden z-0">
         <img
-          src="/src/assets/gradient-1.png"
+          src={gradient1}
           alt=""
           className="absolute opacity-50 z-[1]"
           style={{
@@ -38,7 +40,7 @@ const Desktop: React.FC = () => {
           }}
         />
         <img
-          src="/src/assets/gradient-2.png"
+          src={gradient2}
           alt=""
           className="absolute opacity-50 z-[1]"
           style={{

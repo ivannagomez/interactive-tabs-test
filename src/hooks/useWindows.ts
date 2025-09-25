@@ -68,9 +68,9 @@ const useWindows = () => {
         {
           id: generateId(),
           title: 'Transition Study',
-          url: 'https://www.ivanna-gomez.com/transition-study',
+          url: 'https://ivanna-gomez.com/transition-study',
           favicon: '❤️',
-          content: 'iframe:https://www.ivanna-gomez.com/transition-study',
+          content: 'iframe:https://ivanna-gomez.com/transition-study',
         },
       ],
     },

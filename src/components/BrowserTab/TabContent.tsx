@@ -420,7 +420,7 @@ const TabContent: React.FC<TabContentProps> = ({ activeTab }) => {
             <div className="space-y-6">
               {/* First Result - Ivanna Gomez */}
               <div>
-                <div className="text-sm text-green-700">https://www.ivanna-gomez.com</div>
+                <div className="text-sm text-green-700">https://ivanna-gomez.com</div>
                 <h3 className="text-xl text-blue-600 hover:underline cursor-pointer mb-1">
                   Ivanna Gomez - The Best Engineer Ever Ever Ever
                 </h3>
