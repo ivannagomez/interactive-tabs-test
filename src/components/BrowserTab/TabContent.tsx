@@ -4,6 +4,7 @@ import { Globe, Github, Twitter, Code2, Search, FileText, Folder, FolderOpen, Co
 import dino1 from '../../assets/dino-1.png';
 import dino2 from '../../assets/dino-2.png';
 import dino3 from '../../assets/dino-3.png';
+import penguinAnimation from '../../assets/penguin-animation.mp4';
 
 // Standalone DinosaurGallery component for state persistence
 const DinosaurGallery: React.FC = () => {
@@ -135,12 +136,11 @@ const TabContent: React.FC<TabContentProps> = ({ activeTab }) => {
 
     // Check if content specifies a video
     if (activeTab.content?.startsWith('video:')) {
-      const videoFile = activeTab.content.replace('video:', '');
       return (
         <div className="flex-1 h-full" style={{ backgroundColor: '#ffdac3' }}>
           <div className="p-8 h-full flex items-start justify-center">
             <video
-              src={`/src/assets/${videoFile}`}
+              src={penguinAnimation}
               className="max-w-full rounded-lg"
               style={{ height: '89%', border: '3px solid #faaea9' }}
               autoPlay
