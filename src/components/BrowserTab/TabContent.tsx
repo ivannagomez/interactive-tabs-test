@@ -471,11 +471,11 @@ const TabContent: React.FC<TabContentProps> = ({ activeTab }) => {
     return (
       <div className="p-8">
         <div className="flex items-center gap-3 mb-4">
-          {activeTab.favicon ? (
+          {/* {activeTab.favicon ? (
             <img src={activeTab.favicon} alt="" className="w-8 h-8" />
           ) : (
             <Globe className="w-8 h-8 text-gray-500" />
-          )}
+          )} */}
           <h2 className="text-2xl font-bold">{activeTab.title}</h2>
         </div>
         {activeTab.content ? (
