@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "heroku-postbuild": "cd vendor/interactive-browser && npm ci && npm run build && cd - && rm -rf ./public/interactive-browser && mkdir -p ./public/interactive-browser && cp -R vendor/interactive-browser/dist/* ./public/interactive-browser/"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",
