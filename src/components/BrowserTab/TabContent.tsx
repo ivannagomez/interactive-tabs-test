@@ -97,10 +97,10 @@ const DinosaurGallery: React.FC = () => {
           {dinosaurs[selectedDino].title}
         </h1>
         <p
-          className="text-lg leading-relaxed transition-all duration-300 ease-out whitespace-pre-line"
+          className="text-md leading-relaxed transition-all duration-300 ease-out whitespace-pre-line"
           style={{
-            fontFamily: 'Georgia, serif',
-            fontStyle: 'italic',
+            fontFamily: 'IBM Plex Mono',
+            lineHeight: '1.2',
             color: '#d6a2b0',
           }}
         >
