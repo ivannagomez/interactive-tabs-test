@@ -16,7 +16,7 @@ const Desktop: React.FC = () => {
           <h1 className="font-bold mb-6 tracking-tight font-instrument-serif text-8xl" style={{ color: '#251075' }}>
             Interactive Browser Playground
           </h1>
-          <p className="text-xl max-w-2xl mx-auto leading-6 font-inter" style={{ color: '#251075' }}>
+          <p className="text-xl max-w-2xl mx-auto leading-6 font-inter font-ibm-plex-mono" style={{ color: '#251075' }}>
             This is a case study that I decided to create to get more comfortable with React + Tailwind.
           </p>
           {/* <p className="text-xl text-black/70 max-w-2xl mx-auto leading-6">
