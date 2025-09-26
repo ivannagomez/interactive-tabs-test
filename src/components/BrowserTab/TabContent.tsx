@@ -5,6 +5,9 @@ import dino1 from '../../assets/dino-1.png';
 import dino2 from '../../assets/dino-2.png';
 import dino3 from '../../assets/dino-3.png';
 import penguinAnimation from '../../assets/penguin-animation.mp4';
+import triceratopSvg from '../../assets/svg/triceratop.svg';
+import parasaurolophus from '../../assets/svg/parasaurolophus.svg';
+import stegosaursSvg from '../../assets/svg/stegosaurs.svg';
 
 // Standalone DinosaurGallery component for state persistence
 const DinosaurGallery: React.FC = () => {
@@ -15,19 +18,22 @@ const DinosaurGallery: React.FC = () => {
       image: dino1,
       name: 'Dino 1',
       title: 'triceratop',
-      poem: 'Ancient guardian of the plains,\nWith proud horns that gleam like gold.\nIn meadows where the sunlight reigns,\nYour gentle heart beats strong and bold.'
+      poem: 'Ancient guardian of the plains,\nWith proud horns that gleam like gold.\nIn meadows where the sunlight reigns,\nYour gentle heart beats strong and bold.',
+      svg: triceratopSvg
     },
     {
       image: dino2,
       name: 'Dino 2',
       title: 'parasaurolophus',
-      poem: 'Songs echo through primeval trees,\nYour crest calls out across the land.\nA melody upon the breeze,\nNature\'s own enchanted band.'
+      poem: 'Songs echo through primeval trees,\nYour crest calls out across the land.\nA melody upon the breeze,\nNature\'s own enchanted band.',
+      svg: parasaurolophus
     },
     {
       image: dino3,
       name: 'Dino 3',
       title: 'stegosaurs',
-      poem: 'Plates of armor catch the light,\nA crown of spikes upon your tail.\nGentle giant, peaceful might,\nThrough ancient times your legends sail.'
+      poem: 'Plates of armor catch the light,\nA crown of spikes upon your tail.\nGentle giant, peaceful might,\nThrough ancient times your legends sail.',
+      svg: stegosaursSvg
     }
   ];
 
@@ -37,7 +43,7 @@ const DinosaurGallery: React.FC = () => {
       style={{ backgroundImage: `url(${dinosaurs[selectedDino].image})`, height: '95%' }}
     >
       {/* Frosted Glass Menu */}
-      <div className="absolute top-8 right-4 flex gap-2 p-3 rounded-xl backdrop-blur-md border shadow-lg" style={{ backgroundColor: 'rgba(214, 162, 176, 0.3)', borderColor: 'rgba(214, 162, 176, 0.5)' }}>
+      <div className="absolute top-8 right-4 flex gap-3 p-2 rounded-xl backdrop-blur-md border shadow-lg" style={{ backgroundColor: 'rgba(214, 162, 176, 0.3)', borderColor: 'rgba(214, 162, 176, 0.5)' }}>
         {dinosaurs.map((_, index) => (
           <button
             key={index}
@@ -45,7 +51,7 @@ const DinosaurGallery: React.FC = () => {
               console.log(`Clicked dino ${index}`); // Debug log
               setSelectedDino(index);
             }}
-            className={`w-8 h-8 rounded-lg transition-all duration-200 flex items-center justify-center ${
+            className={`w-13 h-13 rounded-lg transition-all duration-200 flex items-center justify-center ${
               selectedDino === index
                 ? 'shadow-md scale-110'
                 : 'hover:scale-105'
@@ -66,21 +72,13 @@ const DinosaurGallery: React.FC = () => {
               }
             }}
           >
-            {/* Simple geometric SVG icons */}
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style={{ color: '#dbc5c6' }}>
-              {index === 0 && (
-                // Circle for Dino 1
-                <circle cx="8" cy="8" r="6" />
-              )}
-              {index === 1 && (
-                // Triangle for Dino 2
-                <path d="M8 2 L14 14 L2 14 Z" />
-              )}
-              {index === 2 && (
-                // Square for Dino 3
-                <rect x="2" y="2" width="12" height="12" />
-              )}
-            </svg>
+            {/* Dinosaur SVG icons */}
+            <img
+              src={dinosaurs[index].svg}
+              alt={dinosaurs[index].title}
+              className="w-12 h-12 object-contain transform translate-y-1"
+              style={{ filter: 'brightness(0) saturate(100%) invert(95%) sepia(5%) saturate(1398%) hue-rotate(304deg) brightness(94%) contrast(96%)' }}
+            />
           </button>
         ))}
       </div>
@@ -254,7 +252,7 @@ const TabContent: React.FC<TabContentProps> = ({ activeTab }) => {
                       <div className="text-gray-500"></div>
                       <div><span className="text-pink-300">const</span> <span className="text-gray-200">project</span> <span className="text-rose-300">=</span> <span className="text-purple-300">{'{'}</span></div>
                       <div>  <span className="text-emerald-300">name</span><span className="text-rose-300">:</span> <span className="text-sky-300">"Interactive Browser Playground"</span><span className="text-gray-400">,</span></div>
-                      <div>  <span className="text-emerald-300">purpose</span><span className="text-rose-300">:</span> <span className="text-sky-300">"Learning React + Tailwind"</span><span className="text-gray-400">,</span></div>
+                      <div>  <span className="text-emerald-300">purpose</span><span className="text-rose-300">:</span> <span className="text-sky-300">"Improving knowledge on React + Tailwind"</span><span className="text-gray-400">,</span></div>
                       <div>  <span className="text-emerald-300">features</span><span className="text-rose-300">:</span> <span className="text-purple-300">[</span></div>
                       <div>    <span className="text-sky-300">"Draggable browser windows"</span><span className="text-gray-400">,</span></div>
                       <div>    <span className="text-sky-300">"Mac Safari-inspired design"</span><span className="text-gray-400">,</span></div>
