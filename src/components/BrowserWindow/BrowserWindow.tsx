@@ -7,9 +7,11 @@ interface BrowserWindowProps {
   tabs: Tab[];
   activeTabId: string | null;
   activeTab: Tab | undefined;
+  onFocus?: () => void;
+  isActive?: boolean;
 }
 
-const BrowserWindow: React.FC<BrowserWindowProps> = ({ tabs, activeTabId, activeTab }) => {
+const BrowserWindow: React.FC<BrowserWindowProps> = ({ tabs, activeTabId, activeTab, onFocus, isActive }) => {
   return (
     <div className="w-full h-full flex flex-col bg-gray-50">
       {/* Navigation Bar */}
@@ -44,7 +46,7 @@ const BrowserWindow: React.FC<BrowserWindowProps> = ({ tabs, activeTabId, active
       </div>
 
       {/* Content Area */}
-      <TabContent activeTab={activeTab} />
+      <TabContent activeTab={activeTab} onFocus={onFocus} isActive={isActive} />
     </div>
   );
 };

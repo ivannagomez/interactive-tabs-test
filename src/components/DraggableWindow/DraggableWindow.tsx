@@ -216,6 +216,8 @@ const DraggableWindow: React.FC<DraggableWindowProps> = ({
           tabs,
           activeTabId,
           activeTab,
+          onFocus,
+          isActive,
         })}
       </div>
     </div>

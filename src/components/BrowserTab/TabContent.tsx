@@ -112,9 +112,12 @@ const DinosaurGallery: React.FC = () => {
 
 interface TabContentProps {
   activeTab: Tab | null;
+  onFocus?: () => void;
+  isActive?: boolean;
 }
 
-const TabContent: React.FC<TabContentProps> = ({ activeTab }) => {
+const TabContent: React.FC<TabContentProps> = ({ activeTab, onFocus, isActive }) => {
+
   if (!activeTab) {
     return (
       <div className="flex-1 flex items-center justify-center bg-white">
@@ -155,13 +158,25 @@ const TabContent: React.FC<TabContentProps> = ({ activeTab }) => {
     if (activeTab.content?.startsWith('iframe:')) {
       const iframeUrl = activeTab.content.replace('iframe:', '');
       return (
-        <div className="flex-1 bg-white h-full">
+        <div className="flex-1 bg-white h-full relative">
           <iframe
             src={iframeUrl}
             className="w-full h-full border-0"
             title={activeTab.title}
             loading="lazy"
           />
+          {/* Invisible overlay to capture clicks and bring window to focus - only when window is not active */}
+          {!isActive && (
+            <div
+              className="absolute inset-0 bg-transparent cursor-pointer"
+              onClick={() => {
+                if (onFocus) {
+                  onFocus();
+                }
+              }}
+              style={{ zIndex: 10 }}
+            />
+          )}
         </div>
       );
     }
