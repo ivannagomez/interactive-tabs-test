@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import type { Tab } from '../../types';
 import { Globe, Github, Twitter, Code2, Search, FileText, Folder, FolderOpen, Coffee } from 'lucide-react';
 import dino1 from '../../assets/dino-1.png';
@@ -12,6 +12,7 @@ import stegosaursSvg from '../../assets/svg/stegosaurs.svg';
 // Standalone DinosaurGallery component for state persistence
 const DinosaurGallery: React.FC = () => {
   const [selectedDino, setSelectedDino] = useState(0);
+  const [imagesLoaded, setImagesLoaded] = useState(false);
 
   const dinosaurs = [
     {
@@ -37,13 +38,66 @@ const DinosaurGallery: React.FC = () => {
     }
   ];
 
+  // Preload all dinosaur images on component mount
+  useEffect(() => {
+    const preloadImages = async () => {
+      const imagePromises = dinosaurs.map(dino =>
+        new Promise<void>((resolve) => {
+          const img = new Image();
+          img.onload = () => resolve();
+          img.onerror = () => resolve(); // Still resolve on error to prevent hanging
+          img.src = dino.image;
+        })
+      );
+
+      await Promise.all(imagePromises);
+      setImagesLoaded(true);
+    };
+
+    preloadImages();
+  }, []);
+
+  // Show loading state while images are preloading
+  if (!imagesLoaded) {
+    return (
+      <div className="relative w-full h-full flex items-center justify-center bg-gradient-to-br from-pink-100 to-purple-100" style={{ height: '95%' }}>
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 mx-auto mb-4" style={{ borderColor: '#d6a2b0' }}></div>
+          <p className="text-lg font-medium" style={{ color: '#d6a2b0' }}>Loading dinosaur gallery...</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div
-      className="relative w-full h-full bg-cover bg-center bg-no-repeat overflow-hidden transition-all duration-500 ease-in-out"
-      style={{ backgroundImage: `url(${dinosaurs[selectedDino].image})`, height: '95%' }}
+      className="relative w-full h-full overflow-hidden bg-gradient-to-br from-pink-100 to-purple-100"
+      style={{ height: '95%' }}
     >
+      {/* Base image to prevent any flash - always shows current or previous image */}
+      <img
+        src={dinosaurs[0].image}
+        alt={dinosaurs[0].title}
+        className="absolute inset-0 w-full h-full object-cover"
+        style={{ zIndex: 0 }}
+      />
+
+      {/* Multiple img elements for smooth crossfade transitions */}
+      {dinosaurs.map((dino, index) => (
+        <img
+          key={index}
+          src={dino.image}
+          alt={dino.title}
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ease-in-out`}
+          style={{
+            opacity: index === selectedDino ? 1 : 0,
+            zIndex: index === selectedDino ? 2 : 1,
+            pointerEvents: 'none'
+          }}
+        />
+      ))}
       {/* Frosted Glass Menu */}
-      <div className="absolute top-8 right-4 flex gap-3 p-2 rounded-xl backdrop-blur-md border shadow-lg" style={{ backgroundColor: 'rgba(214, 162, 176, 0.3)', borderColor: 'rgba(214, 162, 176, 0.5)' }}>
+      <div className="absolute top-8 right-4 flex gap-3 p-2 rounded-xl backdrop-blur-md border shadow-lg z-10" style={{ backgroundColor: 'rgba(214, 162, 176, 0.3)', borderColor: 'rgba(214, 162, 176, 0.5)' }}>
         {dinosaurs.map((_, index) => (
           <button
             key={index}
@@ -84,7 +138,7 @@ const DinosaurGallery: React.FC = () => {
       </div>
 
       {/* Typography Overlay */}
-      <div className="absolute top-8 left-8 max-w-md">
+      <div className="absolute top-8 left-8 max-w-md z-10">
         <h1
           className="text-6xl mb-4 transition-all duration-300 ease-out"
           style={{
