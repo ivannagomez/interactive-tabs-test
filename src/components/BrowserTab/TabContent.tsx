@@ -219,18 +219,6 @@ const TabContent: React.FC<TabContentProps> = ({ activeTab, onFocus, isActive })
             title={activeTab.title}
             loading="lazy"
           />
-          {/* Invisible overlay to capture clicks and bring window to focus - only when window is not active */}
-          {!isActive && (
-            <div
-              className="absolute inset-0 bg-transparent cursor-pointer"
-              onClick={() => {
-                if (onFocus) {
-                  onFocus();
-                }
-              }}
-              style={{ zIndex: 10 }}
-            />
-          )}
         </div>
       );
     }

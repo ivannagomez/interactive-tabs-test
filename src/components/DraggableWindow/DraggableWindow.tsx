@@ -150,12 +150,16 @@ const DraggableWindow: React.FC<DraggableWindowProps> = ({
         zIndex,
       }}
       onMouseDown={(e) => {
-        // Focus window on any click within it
-        onFocus();
+        // Only focus window if clicking on window chrome, not iframe content
+        if (e.target instanceof Element && !e.target.closest('iframe')) {
+          onFocus();
+        }
       }}
       onClick={(e) => {
-        // Also handle click events
-        onFocus();
+        // Only focus window if clicking on window chrome, not iframe content
+        if (e.target instanceof Element && !e.target.closest('iframe')) {
+          onFocus();
+        }
       }}
     >
       {/* Window Title Bar with Tabs */}
