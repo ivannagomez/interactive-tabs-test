@@ -72,7 +72,6 @@ const DinosaurGallery: React.FC = () => {
   return (
     <div
       className="relative w-full h-full overflow-hidden bg-gradient-to-br from-pink-100 to-purple-100"
-      style={{ height: '95%' }}
     >
       {/* Base image to prevent any flash - always shows current or previous image */}
       <img
@@ -357,20 +356,6 @@ const TabContent: React.FC<TabContentProps> = ({ activeTab, onFocus, isActive })
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-
-            {/* Status Bar */}
-            <div className="flex items-center justify-between px-4 py-1 bg-purple-600 text-xs text-white">
-              <div className="flex items-center gap-4">
-                <span>✓ React + Tailwind</span>
-                <span>⚡ Vite</span>
-                <span>🎨 Custom Design</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span>Lines: 1000+</span>
-                <span>|</span>
-                <span>TypeScript</span>
               </div>
             </div>
           </div>

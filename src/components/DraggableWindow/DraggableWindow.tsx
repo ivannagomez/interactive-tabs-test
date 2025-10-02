@@ -135,7 +135,7 @@ const DraggableWindow: React.FC<DraggableWindowProps> = ({
   return (
     <div
       ref={windowRef}
-      className={`absolute bg-white rounded-xl overflow-hidden ring-1 ring-black/10 ${
+      className={`absolute bg-white rounded-xl ring-1 ring-black/10 flex flex-col ${
         isDragging
           ? 'cursor-grabbing shadow-2xl shadow-black/30 ring-2'
           : isActive
@@ -150,25 +150,22 @@ const DraggableWindow: React.FC<DraggableWindowProps> = ({
         zIndex,
       }}
       onMouseDown={(e) => {
-        // Only focus window if clicking on window chrome, not iframe content
-        if (e.target instanceof Element && !e.target.closest('iframe')) {
-          onFocus();
-        }
+        // Focus window on any click within it
+        onFocus();
       }}
       onClick={(e) => {
-        // Only focus window if clicking on window chrome, not iframe content
-        if (e.target instanceof Element && !e.target.closest('iframe')) {
-          onFocus();
-        }
+        // Also handle click events
+        onFocus();
       }}
     >
       {/* Window Title Bar with Tabs */}
       <div
-        className={`flex items-center gap-3 px-3 py-2 ${
+        className={`flex-shrink-0 flex items-center gap-3 px-3 py-2 ${
           isActive
             ? 'bg-gradient-to-b from-slate-50 to-gray-50 border-b border-gray-200'
             : 'bg-gray-100 border-b'
-        } cursor-grab select-none`}
+        } cursor-grab select-none rounded-t-xl`}
+        style={{ zIndex: 10, position: 'relative' }}
         onMouseDown={handleMouseDown}
       >
         {/* Window Controls */}
@@ -215,7 +212,7 @@ const DraggableWindow: React.FC<DraggableWindowProps> = ({
       </div>
 
       {/* Window Content */}
-      <div className="h-full overflow-hidden">
+      <div className="flex-1 overflow-hidden rounded-b-xl" style={{ isolation: 'isolate' }}>
         {React.cloneElement(children as React.ReactElement, {
           tabs,
           activeTabId,
